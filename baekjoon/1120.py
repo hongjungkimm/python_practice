@@ -1,3 +1,4 @@
+from collections import deque
 import sys
 
 A, B = sys.stdin.readline().split()
