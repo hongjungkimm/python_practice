@@ -1,30 +1,28 @@
-# 1. 시간초과
-# import sys
+import sys
 
-# N, M = map(int, sys.stdin.readline().split())
-# trees = list(map(int, sys.stdin.readline().split()))
+def cutting_trees(target, list1):
+    start, end = 1, max(list1)
 
-# start, end = 1, max(trees)
-
-# while True:
-#     middle = (start + end) // 2
-#     tmp = 0
-#     for tree in trees:
-#         if tree - middle > 0:
-#             tmp += (tree - middle)
-#         if tmp > M:
-#             break
-#     if tmp == M:
-#         break
-#     elif tmp > M:
-#         start = middle + 1
-#     else:
-#         end = middle - 1
-
-# print(middle)
+    while start <= end:
+        middle = (start + end) // 2
+        tmp = 0
+        for i in list1:
+            if i - middle > 0:
+                tmp += (i - middle)
+        if tmp >= target:
+            start = middle + 1
+        else:
+            end = middle - 1
+    
+    return end
 
 
-# 2. 시간초과
+N, M = map(int, sys.stdin.readline().split())
+trees = list(map(int, sys.stdin.readline().split()))
+
+print(cutting_trees(M, trees))
+
+
 # import sys
 
 # N, M = map(int, sys.stdin.readline().split())
@@ -48,7 +46,6 @@
 # print(height)
 
 
-# 3. 시간초과
 # import sys
 
 # N, M = map(int, sys.stdin.readline().split())
@@ -64,7 +61,6 @@
 # print(height)
 
 
-# 4. 시간초과
 # import sys
 
 # N, M = map(int, sys.stdin.readline().split())
