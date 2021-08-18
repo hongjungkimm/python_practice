@@ -1,4 +1,4 @@
-import sys # 틀림
+import sys
 
 N = int(sys.stdin.readline())
 
@@ -14,22 +14,23 @@ h_sticks = []
 for l in l_sticks:
     h_sticks.append(sticks[l])
 
-check_list = [1] + [0 for _ in range(N-2)] + [1]
-max_h = h_sticks[0]
-for i in range(1, N-1):
-    if h_sticks[i] >= max_h:
-        check_list[i] = 1
-        max_h = h_sticks[i]
+max_idx = 0
+for i in range(N):
+    if h_sticks[i] >= h_sticks[max_idx]:
+        max_idx = i
 
-difference = 0
-d = 0
-for i in range(1, N):
-    if check_list[i] == 1:
-        if h_sticks[d] > h_sticks[i]:
-            difference += ((l_sticks[i] - l_sticks[d]) * (max_h - h_sticks[i]))
-            d = i
-        else:
-            difference += ((l_sticks[i] - l_sticks[d]) * (max_h - h_sticks[d]))
-            d = i
+result = 0
+point = 0
+for i in range(max_idx+1):
+    if h_sticks[point] <= h_sticks[i]:
+        result += ((l_sticks[i] - l_sticks[point]) * h_sticks[point])
+        point = i
 
-print(((l_sticks[-1] - l_sticks[0] + 1) * max_h) - difference)
+point = N - 1
+for i in range(N-1, max_idx-1, - 1):
+    if h_sticks[point] <= h_sticks[i]:
+        result += ((l_sticks[point] - l_sticks[i]) * h_sticks[point])
+        point = i
+
+result = result + h_sticks[max_idx]
+print(result)
