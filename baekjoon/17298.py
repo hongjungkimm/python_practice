@@ -30,23 +30,24 @@ numbers = [0] + list(map(int, sys.stdin.readline().split())) + [0]
 # print(result)
 
 
-i = 1
-j = 2
-result = ''
-while True:
-    if i == N:
-        result += '-1 '
-        break
-    if j == N + 1:
-        result += '-1 '
-        i += 1
-        j = i + 1
-    if numbers[j] > numbers[i]:
-        result += (str(numbers[j]) + ' ')
-        i += 1
-        j = i + 1
-    else:
-        j += 1
+# i = 1
+# j = 2
+# result = ''
+# while True:
+#     if i == N:
+#         result += '-1 '
+#         break
+#     if j == N + 1:
+#         result += '-1 '
+#         i += 1
+#         j = i + 1
+#     if numbers[j] > numbers[i]:
+#         result += (str(numbers[j]) + ' ')
+#         i += 1
+#         j = i + 1
+#     else:
+#         j += 1
 
-print(result)
+# print(result)
+
     
