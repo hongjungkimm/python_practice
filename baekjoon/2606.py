@@ -26,7 +26,7 @@ def dfs(v):
 
 
 graph = [[0] * (V+1) for _ in range(V+1)] # 빈 그래프 만들어 주기
-for line in connection: # 양방향으로 전치행렬로 저장
+for line in connection: # 양방향으로 인접행렬로 저장
     graph[line[0]][line[1]] = 1
     graph[line[1]][line[0]] = 1
 
