@@ -2,21 +2,21 @@ import sys
 
 w, h = map(int, sys.stdin.readline().split())
 p, q = map(int, sys.stdin.readline().split())
-t = int(sys.stdin.readline().split())
+t = int(sys.stdin.readline())
 
-x_move = t % (w * 2)
-y_move = t % (h * 2)
+p_move = t % (w * 2)
+q_move = t % (h * 2)
 
-tmp_x = p + x_move
-tmp_y = q + y_move
+p_tmp = p + p_move
+q_tmp = q + q_move
 
-if w < tmp_x <= w * 2:
-    tmp_x = w * 2 - tmp_x
+if w < p_tmp <= w * 2:
+    p_tmp = w * 2 - p_tmp
 
-if h < tmp_y <= h * 2:
-    tmp_y = h * 2 - tmp_y
+if h < q_tmp <= h * 2:
+    q_tmp = h * 2 - q_tmp
 
-final_x = tmp_x % (w * 2)
-final_y = tmp_y % (h * 2)
+p_result = p_tmp % (w * 2)
+q_result = q_tmp % (h * 2)
 
-print(final_x, final_y)
+print(p_result, q_result)
