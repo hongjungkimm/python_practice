@@ -1,16 +1,14 @@
-import sys # 나중에 heapq 모듈로 다시 풀어보기, 일단은 시간초과로 실패
+import sys
+import heapq
 
 N = int(sys.stdin.readline())
-
-numbers = []
-for _ in range(N):
-    command = int(sys.stdin.readline())
-    if command > 0:
-        numbers.append(command)
-        numbers.sort()
-    else:
-        if numbers:
-            print(numbers[0])
-            numbers = numbers[1:]
+numbers = [int(sys.stdin.readline()) for _ in range(N)]
+heap = []
+for n in numbers:
+    if n == 0:
+        if heap:
+            print(heapq.heappop(heap))
         else:
             print(0)
+    else:
+        heapq.heappush(heap, n)
