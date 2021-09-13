@@ -21,7 +21,7 @@ def bfs(i, j):
                     else:
                         queue.append([ni, nj])
                         visited[ni][nj] = visited[x][y] + 1 # 벽을 부쉈기 때문에 전 경로의 방문체크 + 1을 해줌
-    return visited[M-1][N-1] # 벽을 가장 덜 부수고 온 경로가 가장 빨리 오고 그 주위를 -1이 아닌 숫자로 방문체크 해놓기 때문에 끝만 반환해줘도 됨
+    return visited[M-1][N-1]
 
 N, M = map(int, sys.stdin.readline().split())
 
