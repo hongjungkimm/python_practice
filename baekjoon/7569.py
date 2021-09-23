@@ -48,7 +48,7 @@ def bfs(list1):
 
 M, N, H = map(int, sys.stdin.readline().split())
 # 3차원 배열 입력 받기
-tomatoes = [[list(map(int, sys.stdin.readline().split())) for _ in range(N*i, N*i+N)] for i in range(H)]
+tomatoes = [[list(map(int, sys.stdin.readline().split())) for _ in range(N)] for _ in range(H)]
 
 ripen = []
 # 익은 감 리스트 찾아주기
