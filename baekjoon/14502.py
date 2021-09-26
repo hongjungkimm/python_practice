@@ -42,13 +42,13 @@ for i in range(N):
     for j in range(M):
         if area[i][j] == 0:
             empty.append([i, j])
-        elif  area[i][j] == 2:
+        elif area[i][j] == 2:
             virus.append([i, j])
         else:
             wall.append([i, j])
 
 combination = list(combinations(empty, 3))
-
+print(combination)
 result = -1
 for c in combination:
     if bfs(c) > result:
