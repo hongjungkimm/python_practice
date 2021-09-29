@@ -7,8 +7,8 @@ def save_profit(num):
     if num + schedule[num][0] <= N + 1:
         for i in range(num+schedule[num][0], N+2):
             profits[num][i] = (profits[num-1][num] + schedule[num][1])
-        for j in range(1, N+1):
-            profits[num][j] = max(profits[num-1][j], profits[num][j])
+    for j in range(1, N+2):
+        profits[num][j] = max(profits[num-1][j], profits[num][j])
     save_profit(num+1)
         
 
@@ -24,25 +24,6 @@ for i in range(N+1):
             max_num = profits[i][j]
 
 print(max_num)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
