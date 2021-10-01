@@ -18,7 +18,8 @@ for i in range(max_len-1, -1, -1):
             words_dict[word[::-1][i]][max_len-i-1] += 1
         except:
             pass
-
+        
+print(words_dict)
 num_list = []
 for l in words_dict.values():
     n = max_len - 1
