@@ -1,3 +1,25 @@
+import sys
+
+def factorial(n):
+    result = 1
+    for i in range(1, n+1):
+        result *= i
+    return result
+
+T = int(sys.stdin.readline())
+
+for _ in range(T):
+    N, M = map(int, sys.stdin.readline().split())
+    up = factorial(M)
+    down = factorial(N) * factorial(M-N)
+
+    cnt = up // down
+    print(cnt)
+
+
+
+
+
 # import sys 시간초과
 # from itertools import combinations
 
