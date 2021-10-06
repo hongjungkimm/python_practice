@@ -18,8 +18,6 @@ for _ in range(T):
 
 
 
-
-
 # import sys 시간초과
 # from itertools import combinations
 
