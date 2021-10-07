@@ -1,4 +1,4 @@
-import sys # 시간초과
+import sys # 시간초과 투 포인터 사용
 
 N = int(sys.stdin.readline())
 numbers = list(map(int, sys.stdin.readline().split()))
@@ -14,10 +14,7 @@ end = k
 while start < N - 2:
     if result == 0:
         break
-    if (result > 0) and (numbers[i] + numbers[j] + numbers[k] > 0):
-        if numbers[i] + numbers[j] + numbers[k] > result:
-            break
-    elif (result < numbers[i] + numbers[j] + numbers[k] <= 0) or (0 <= numbers[i] + numbers[j] + numbers[k] < result):
+    elif 0 <= abs(numbers[i] + numbers[j] + numbers[k]) <= abs(result):
         result = numbers[i] + numbers[j] + numbers[k]
         start = i
         mid = j
