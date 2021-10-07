@@ -1,46 +1,30 @@
-import sys # 시간초과 투 포인터 사용
+import sys
 
 N = int(sys.stdin.readline())
 numbers = list(map(int, sys.stdin.readline().split()))
 numbers.sort()
+min_num = float('inf')
+result = []
 
-result = sum(numbers[:3])
-i = 0
-j = 1
-k = 2
-start = i
-mid = j
-end = k
-while start < N - 2:
-    if result == 0:
+for i in range(N-2):
+    start, end = i+1, N-1
+
+    flag = False
+    while start < end:
+    
+        if abs(numbers[i] + numbers[start] + numbers[end]) < min_num:
+            min_num = abs(numbers[i] + numbers[start] + numbers[end])
+            result = [i, start, end]
+        
+        if numbers[i] + numbers[start] + numbers[end] > 0:
+            end -= 1
+        elif numbers[i] + numbers[start] + numbers[end] < 0:
+            start += 1
+        else:
+            flag = True
+            break
+
+    if flag:
         break
-    elif 0 <= abs(numbers[i] + numbers[j] + numbers[k]) <= abs(result):
-        result = numbers[i] + numbers[j] + numbers[k]
-        start = i
-        mid = j
-        end = k
-        if i == N - 3:
-            break
-        if j == N - 2:
-            i += 1
-            j = i + 1
-            k = j + 1
-        else:
-            k += 1
-            if k == N:
-                j += 1
-                k = j + 1
-    else:
-        if i == N - 3:
-            break
-        if j == N - 2:
-            i += 1
-            j = i + 1
-            k = j + 1
-        else:
-            k += 1
-            if k == N:
-                j += 1
-                k = j + 1
 
-print(numbers[start], numbers[mid], numbers[end])
+print(numbers[result[0]], numbers[result[1]], numbers[result[2]])
