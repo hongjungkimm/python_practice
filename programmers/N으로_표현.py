@@ -74,10 +74,9 @@ def solution(N, number):
                     make_min_cnt(current // int(nums[i]))
                     tmp_cnts = origin
 
-    limit_num = len(str(number))
     nums = [0]
     answer = float('inf')
-    for i in range(limit_num):
+    for i in range(8):
         nums.append(str(N) + str(N) * i)
     tmp_nums = []
     tmp_cnts = []
