@@ -1,3 +1,4 @@
+# 10개 중에 8개 통과, 2개 실패
 def solution(N, number):
     def make_min_cnt(current):
         nonlocal nums, number, answer, tmp_nums, tmp_cnts
