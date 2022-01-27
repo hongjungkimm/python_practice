@@ -1,8 +1,6 @@
 def solution(n, times):
-    times.sort()
-    ing = [0] * len(times)
     answer = 0
     
-    return times
+    return answer
 
 print(solution(6, [7, 10]))
