@@ -1,46 +1,32 @@
 def solution(s):
     answer = []
     for i in s:
-        if len(i) > 3:
-            s_list = []
-            for j in i:
-                s_list.append(int(j))
-
-                position = []
-                for j in range(len(s_list) - 2):
-                    if s_list[j] == 1 and s_list[j+1] == 1 and s_list[j+2] == 0:
-                        position.append(j)
-
-                tmp = []
-                for j in position:
-                    s_list_copy = s_list[:]
-                    for _ in range(3):
-                        s_list_copy.pop(j)
-                    if s_list_copy[:3] == [1, 1, 1]:
-                        tmp.append([1, 1., 0] + s_list_copy)
-                    else:
-                        cnt = 0
-                        flag = False
-                        for k in range(3, len(s_list_copy)):
-                            if s_list_copy[k] == 1:
-                                cnt += 1
-                                if cnt >= 3:
-                                    flag = True
-                                    break
-
-                        if cnt >= 3:
-                            flag = True
-
-                        if flag:
-                            tmp.append(s_list_copy + [1, 1, 0])
-                tmp.sort()
-                if tmp:
-                    answer.append(tmp[0])
-                else:
-                    answer.append(i)
-                    break
-        else:
+        s_list = []
+        for j in i:
+            s_list.append(j)
+        if len(i) <= 3:
             answer.append(i)
+        else:
+            while True:
+                zero = 0
+                cnt = 0
+                for j in range(len(s_list)):
+                    if s_list[j] == '1':
+                        cnt += 1
+                    else:
+                        if cnt >= 3:
+                            zero = j
+                            s_list.pop(j)
+                            break
+                        cnt = 0
+                if zero:
+                    s_list.insert(j - 1, '0')
+                else:
+                    break
+            s_str = ''
+            for j in s_list:
+                s_str += j
+            answer.append(s_str)
     return answer
 
-print(solution(["1110","100111100","0111111010"]))
+print(solution(["1110","100111100","0111111010", "11100"]))
