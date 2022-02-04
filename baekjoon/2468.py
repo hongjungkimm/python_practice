@@ -52,3 +52,63 @@ if result == []: # 도시의 모든 높이가 똑같다면 0이 되므로 이때
     print(1)
 else:
     print(max(result)) # 가장 큰 개수를 출력
+
+
+import sys
+from collections import deque
+
+def bfs(i, j):
+    global area, visited
+
+    di = [-1, 1, 0, 0]
+    dj = [0, 0, -1, 1]
+
+    visited[i][j] = True
+    queue = deque([[i, j]])
+
+    while queue:
+        x, y = queue.popleft()
+        for d in range(4):
+            ni = x + di[d]
+            nj = y + dj[d]
+            if 0 <= ni < N and 0 <= nj < N:
+                if visited[ni][nj] == False and area[ni][nj]:
+                    visited[ni][nj] = True
+                    queue.append([ni, nj])
+
+
+
+N = int(sys.stdin.readline())
+
+area = [list(map(int, sys.stdin.readline().split())) for _ in range(N)]
+
+max_height = 0
+for i in range(N):
+    for j in range(N):
+        if area[i][j] > max_height:
+            max_height = area[i][j]
+
+result = 0
+while max_height:
+
+    tmp = 0
+    visited = [[False] * N for _ in range(N)]
+    for i in range(N):
+        for j in range(N):
+            if visited[i][j] == False and area[i][j] >= 1:
+                bfs(i, j)
+                tmp += 1
+
+    if tmp > result:
+        result = tmp
+
+    for i in range(N):
+        for j in range(N):
+            if area[i][j] - 1 <= 0:
+                area[i][j] = 0
+            else:
+                area[i][j] -= 1
+    
+    max_height -= 1
+
+print(result)
