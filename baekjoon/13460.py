@@ -10,4 +10,22 @@ for _ in range(N):
         tmp.append(l)
     maze.append(tmp)
 
-print(maze)
+red = []
+blue = []
+hole = []
+flag = False
+for i in range(N):
+    for j in range(M):
+        if maze[i][j] == 'R':
+            red = [i, j]
+        elif maze[i][j] == 'B':
+            blue = [i, j]
+        elif maze[i][j] == 'O':
+            hole = [i, j]
+        if red and blue and hole:
+            flag = True
+            break
+    if flag:
+        break
+
+answer = float('inf')
