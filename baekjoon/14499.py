@@ -12,12 +12,10 @@ def down():
     dice[0], dice[5] = dice[5], dice[0]
     dice[4], dice[5] = dice[5], dice[4]
 
-
 def left():
     global dice
     dice[0], dice[3] = dice[3], dice[0]
     dice[0], dice[2] = dice[2], dice[0]
-    dice[1], dice[4] = dice[4], dice[1]
     dice[2], dice[5] = dice[5], dice[2]
 
 def right():
