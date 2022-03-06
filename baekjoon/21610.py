@@ -95,5 +95,3 @@ for i in range(M):
                     area[i][j] -= 2
                     tmp.append([i, j])
         cloud = tmp
-        
-print(area)
