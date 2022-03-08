@@ -3,27 +3,23 @@ import sys
 def move(i, j, direction, cnt):
     global N, di, dj
 
-    while cnt:
-        cnt -= 1
-        ni = i + di[direction-1]
-        nj = j + dj[direction-1]
-        if direction - 1 in [0, 2, 4, 6]:
-            if ni == -1:
-                ni = N - 1
-            if ni == N:
-                ni = 0
-            if nj == -1:
-                nj = N - 1
-            if nj == N:
-                nj = 0
-            i = ni
-            j = nj
-        else:
-            if ni == -1 or ni == N or nj == -1 or nj == N:
-                ni -= di[direction-1]
-                nj -= di[direction-1]
-                i = nj
-                j = ni
+    # while cnt:
+    #     cnt -= 1
+    #     ni = i + di[direction-1]
+    #     nj = j + dj[direction-1]
+    #     if ni == -1:
+    #         ni = N - 1
+    #     if ni == N:
+    #         ni = 0
+    #     if nj == -1:
+    #         nj = N - 1
+    #     if nj == N:
+    #         nj = 0
+    #     i = ni
+    #     j = nj
+
+    ni = (N + i + (di[direction-1] * cnt)) % N
+    nj = (N + j + (dj[direction-1] * cnt)) % N
     
     result = [ni, nj]
     return result
@@ -37,63 +33,76 @@ dj = [-1, -1, 0, 1, 1, 1, 0, -1]
 point = [N-1, 0]
 
 cloud = []
-for i in range(M):
-    if i == 0:
+for m in range(M):
+    if m == 0:
+        visited = [[False] * N for _ in range(N)]
         direction, cnt = commands[0]
         point = move(point[0], point[1], direction, cnt)
         tmp = [point]
-        if point[0] - 1 == 0 and point[1] + 1 == N:
-            tmp.append([0, 0])
+        up_x = 0
+        right_y = 0
+        if point[0] - 1 == -1:
+            up_x = N - 1
         else:
-            tmp.append([point[0] - 1, point[1] + 1])
-        if point[0] - 1 == 0:
-            tmp.append([0, point[1]])
-        else:
-            tmp.append([point[0] - 1, point[1]])
+            up_x = point[0] - 1
         if point[1] + 1 == N:
-            tmp.append([point[0], 0])
+            right_y = 0
         else:
-            tmp.append([point[0], point[1] + 1])
+            right_y = point[1] + 1
+        tmp.append([point[0], right_y])
+        tmp.append([up_x, point[1]])
+        tmp.append([up_x, right_y])
         for i, j in tmp:
+            visited[i][j] = True
             area[i][j] += 1
         for i, j in tmp:
             plus = 0
-            for pi, pj in [(-1, -1), (1, 1), (-1, 1), (1, -1)]:
-                ni = i + pi
-                nj = j + pj
-                if 0 <= ni < N and 0 <= nj < N and area[ni][nj]:
-                    plus += 1
+            if 0 <= i - 1 < N and 0 <= j - 1 < N and area[i-1][j-1]:
+                plus += 1
+            if 0 <= i + 1 < N and 0 <= j + 1 < N and area[i+1][j+1]:
+                plus += 1
+            if 0 <= i - 1 < N and 0 <= j + 1 < N and area[i-1][j+1]:
+                plus += 1
+            if 0 <= i + 1 < N and 0 <= j - 1 < N and area[i+1][j-1]:
+                plus += 1
             area[i][j] += plus
+
         for i in range(N):
             for j in range(N):
-                if [i, j] not in tmp and area[i][j] >= 2:
+                if visited[i][j] == False and area[i][j] >= 2:
                     area[i][j] -= 2
                     cloud.append([i, j])
     else:
-        direction, cnt = commands[i]
-        print(cloud)
+        visited = [[False] * N for _ in range(N)]
+        direction, cnt = commands[m]
         for i in range(len(cloud)):
             location = move(cloud[i][0], cloud[i][1], direction, cnt)
             cloud[i] = location
             area[cloud[i][0]][cloud[i][1]] += 1
-        print("-----")
-        print(cloud)
-        print("-------end")
         for i, j in cloud:
+            visited[i][j] = True
             plus = 0
-            for pi, pj in [(-1, -1), (1, 1), (-1, 1), (1, -1)]:
-                ni = i + pi
-                nj = j + pj
-                if 0 <= ni < N and 0 <= nj < N and area[ni][nj]:
-                    plus += 1
+            if 0 <= i - 1 < N and 0 <= j - 1 < N and area[i-1][j-1]:
+                plus += 1
+            if 0 <= i + 1 < N and 0 <= j + 1 < N and area[i+1][j+1]:
+                plus += 1
+            if 0 <= i - 1 < N and 0 <= j + 1 < N and area[i-1][j+1]:
+                plus += 1
+            if 0 <= i + 1 < N and 0 <= j - 1 < N and area[i+1][j-1]:
+                plus += 1
             area[i][j] += plus
-        
+
         tmp = []
         for i in range(N):
             for j in range(N):
-                if [i, j] not in cloud and area[i][j] >= 2:
+                if visited[i][j] == False and area[i][j] >= 2:
                     area[i][j] -= 2
                     tmp.append([i, j])
         cloud = tmp
-    
-print(area)
+
+water = 0
+for i in range(N):
+    for j in range(N):
+        water += area[i][j]
+
+print(water)
