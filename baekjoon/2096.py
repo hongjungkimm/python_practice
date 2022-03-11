@@ -64,3 +64,4 @@ print(max(max_dp), min(min_dp))
 #     make_scores(0, i, 0)
 
 # print(max_result, min_result)
+
