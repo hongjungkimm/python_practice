@@ -1,5 +1,5 @@
 def solution(tickets):
-    def bfs(airport, track):
+    def dfs(airport, track):
         nonlocal route, visited, answer
 
         if len(answer) < len(track):
@@ -8,7 +8,7 @@ def solution(tickets):
         for i in range(len(tickets)):
             if tickets[i][0] == airport and visited[i] == False:
                 visited[i] = True
-                bfs(tickets[i][1], track + [tickets[i][1]])
+                dfs(tickets[i][1], track + [tickets[i][1]])
                 visited[i] = False
 
     answer = []
@@ -20,7 +20,7 @@ def solution(tickets):
             visited[i] = True
             route.append(tickets[i][0])
             route.append(tickets[i][1])
-            bfs(tickets[i][1], route)
+            dfs(tickets[i][1], route)
             visited[i] = False
     return answer
 
