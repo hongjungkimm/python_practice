@@ -17,7 +17,7 @@ def move_dice(dice, direc):
         dice[2], dice[3] = dice[3], dice[2]
     else:
         dice[0], dice[5] = dice[5], dice[0]
-        dice[1], dice[5] = dice[1], dice[5]
+        dice[1], dice[5] = dice[5], dice[1]
         dice[1], dice[4] = dice[4], dice[1]
 
 def rotate(i, j):
@@ -81,6 +81,5 @@ for _ in range(K):
     i, j = move(i, j, direction)
     score += (find(i, j, area[i][j]) * area[i][j])
     rotate(i, j)
-    print(dice)
     
 print(score)
