@@ -3,21 +3,6 @@ import sys
 def move(i, j, direction, cnt):
     global N, di, dj
 
-    # while cnt:
-    #     cnt -= 1
-    #     ni = i + di[direction-1]
-    #     nj = j + dj[direction-1]
-    #     if ni == -1:
-    #         ni = N - 1
-    #     if ni == N:
-    #         ni = 0
-    #     if nj == -1:
-    #         nj = N - 1
-    #     if nj == N:
-    #         nj = 0
-    #     i = ni
-    #     j = nj
-
     ni = (N + i + (di[direction-1] * cnt)) % N
     nj = (N + j + (dj[direction-1] * cnt)) % N
     
