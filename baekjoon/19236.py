@@ -1,14 +1,26 @@
 import sys
 
-def eat(si, sj, num):
-    global fishes, arrows, visited, result
+def eat(si, sj, num, fishes, arrows):
+    global visited, result
 
     if num > result:
         result = num
+        print(result)
+        print(visited)
+
+    arrow = arrows[si][sj]
+    for n in range(1, 4):
+        ni = si + di[arrow] * n
+        nj = sj + dj[arrow] * n
+        if 0 <= ni < 4 and 0 <= nj < 4 and visited[ni][nj] == False:
+            visited[ni][nj] = True
+            move(ni, nj, num + fishes[ni][nj], fishes, arrows)
+            # eat(ni, nj, num + fishes[ni][nj], fishes, arrows)
+            visited[ni][nj] = False
     
     
-def move(si, sj, num):
-    global fishes, arrows, visited, di, dj
+def move(si, sj, num, fishes, arrows):
+    global visited, di, dj
     
     for n in range(1, 17):
         flag = False
@@ -33,6 +45,10 @@ def move(si, sj, num):
                     break
             if flag:
                 break
+    
+    fishes_copy = [fishes[i][:] for i in range(4)]
+    arrows_copy = [arrows[i][:] for i in range(4)]
+    eat(si, sj, num, fishes_copy, arrows_copy)
 
 
 fishes = []
@@ -53,8 +69,9 @@ dj = [0, -1, -1, -1, 0, 1, 1, 1]
 
 visited = [[False] * 4 for _ in range(4)]
 visited[0][0] = True
+fishes_copy = [fishes[i][:] for i in range(4)]
+arrows_copy = [arrows[i][:] for i in range(4)]
 result = 0
-move(0 ,0, fishes[0][0])
-print(fishes)
-print(arrows)
-print(visited)
+move(0, 0, fishes[0][0], fishes_copy, arrows_copy)
+# print(visited)
+# print(result)
