@@ -73,5 +73,5 @@ fishes_copy = [fishes[i][:] for i in range(4)]
 arrows_copy = [arrows[i][:] for i in range(4)]
 result = 0
 move(0, 0, fishes[0][0], fishes_copy, arrows_copy)
-# print(visited)
-# print(result)
+print(visited)
+print(result)
