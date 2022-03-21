@@ -24,6 +24,7 @@
 
 
 
+
 from collections import defaultdict
 
 def solution(info, query):
