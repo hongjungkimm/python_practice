@@ -75,4 +75,3 @@ result = 0
 move(0, 0, fishes[0][0], fishes_copy, arrows_copy)
 print(visited)
 print(result)
-
