@@ -13,3 +13,4 @@ def remove_air(cheeze):
 
 N, M = map(int, sys.stdin.readline().split())
 cheeze = [list(map(int, sys.stdin.readline().split())) for _ in range(N)]
+
