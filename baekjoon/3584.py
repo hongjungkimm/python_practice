@@ -32,3 +32,5 @@ for tc in range(1, T + 1):
             child2 = parent
             
     print(answer)
+
+    
