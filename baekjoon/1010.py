@@ -17,7 +17,6 @@ for _ in range(T):
     print(cnt)
 
 
-
 # import sys 시간초과
 # from itertools import combinations
 
