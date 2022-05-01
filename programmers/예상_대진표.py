@@ -17,5 +17,6 @@ def solution(n, a, b):
 
     return answer
 
+
 print(solution(8, 4, 6))
 print(solution(8, 4, 7))
