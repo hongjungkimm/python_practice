@@ -68,4 +68,3 @@ answer = bfs(c_position[0][0], c_position[0][1], c_position[1][0], c_position[1]
 #             answer = temp
 
 print(answer[1])
-
