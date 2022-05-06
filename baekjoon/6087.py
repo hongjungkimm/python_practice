@@ -52,19 +52,4 @@ for i in range(H):
 
 answer = bfs(c_position[0][0], c_position[0][1], c_position[1][0], c_position[1][1])
 
-# min_length = float('inf')
-# for line in answer_list:
-#     if len(line) < min_length:
-#         min_length = len(line)
-
-# answer = float('inf')
-# for line in answer_list:
-#     if len(line) == min_length:
-#         temp = 0
-#         for i in range(min_length - 1):
-#             if line[i] != line[i+1]:
-#                 temp += 1
-#         if temp < answer:
-#             answer = temp
-
 print(answer[1])
