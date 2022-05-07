@@ -23,28 +23,3 @@ def solution(distance, rocks, n):
     return answer
 
 print(solution(25, [2, 14, 11, 21, 17], 2))
-
-
-# from itertools import combinations
-
-# def solution(distance, rocks, n):
-#     rocks.sort()
-#     length = len(rocks) - n
-#     combi = list(combinations(rocks, length))
-#     answer = -1
-#     for c in combi:
-#         temp = float('inf')
-#         for i in range(len(c)):
-#             if i == 0:
-#                 diff = c[0]
-#             elif i == len(c) - 1:
-#                 diff = distance - c[i]
-#             else:
-#                 diff = c[i] - c[i-1]
-#             if diff < temp:
-#                 temp = diff
-#         if temp > answer:
-#             answer = temp
-#     return answer
-
-# print(solution(25, [2, 14, 11, 21, 17], 2))
