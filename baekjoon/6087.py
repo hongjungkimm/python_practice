@@ -53,4 +53,3 @@ for i in range(H):
 answer = bfs(c_position[0][0], c_position[0][1], c_position[1][0], c_position[1][1])
 
 print(answer[1])
-
