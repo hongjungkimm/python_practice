@@ -37,4 +37,3 @@ for _ in range(S):
             bfs(i, j, k)
 
 print(area[X-1][Y-1])
-
