@@ -9,23 +9,10 @@ def solution(genres, plays):
         genres_cnt[genres[i]] += plays[i]
     
     genres_cnt_list = list(genres_cnt.values())
-    genres_cnt_list.sort()
-
-    max_cnt = []
-    max_cnt.append(genres_cnt_list[-1])
-    max_cnt.append(genres_cnt_list[-2])
-    try:
-        max_cnt.append(genres_cnt_list[-3])
-    except:
-        pass
-    try:
-        max_cnt.append(genres_cnt_list[-4])
-    except:
-        pass
+    genres_cnt_list.sort(reverse=True)
     
     answer = []
-    flag = False
-    for i in max_cnt:
+    for i in genres_cnt_list:
         for genre in genres_cnt.keys():
             if genres_cnt[genre] == i:
                 if len(genres_idx[genre]) == 1:
@@ -40,13 +27,6 @@ def solution(genres, plays):
                                 tmp_max = plays[j]
                                 tmp_idx = j
                         answer.append(tmp_idx)
-                        if len(answer) == 4:
-                            flag = True
-                            break
-            if flag:
-                break
-        if flag:
-            break
 
     return answer
 
