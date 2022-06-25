@@ -23,6 +23,6 @@ def solution(n, money):
     answer = 0
     length = len(money)
     bfs(0, n)
-    return answer
+    return answer % 1000000007
 
 print(solution(5, [1, 2, 5]))
